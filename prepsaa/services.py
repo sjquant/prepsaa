@@ -28,6 +28,7 @@ def answer_question(model_name: str, question: str) -> QnAModel:
     )
     model = llm_model_factory(model_name)
     chain = prompt | model | parser
+    print("🔥 질문에 대한 답변을 생성합니다...")
     result = cast(QnAModel, chain.invoke({"question": question}))
     return result
 
@@ -52,6 +53,7 @@ def explain_service(model_name: str, service_name: str) -> StudyNoteModel:
     )
     model = llm_model_factory(model_name)
     chain = prompt | model | parser
+    print("🔥 학습 노트를 생성합니다...")
     result = cast(StudyNoteModel, chain.invoke({"input": service_name}))
     return result
 
@@ -59,6 +61,7 @@ def explain_service(model_name: str, service_name: str) -> StudyNoteModel:
 def save_to_notion(
     notion_client: NotionClient, service_name: str, content: str
 ) -> None:
+    print("🔥 학습 노트를 Notion에 저장합니다...")
     notion_client.pages.create(
         parent={"database_id": settings.notion_database_id},
         icon={"type": "emoji", "emoji": "📚"},

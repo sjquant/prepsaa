@@ -53,22 +53,22 @@ def config_init():
         default="",
     )
     notion_api_key = typer.prompt(
-        "Notion API Key를 입력하세요 (빈칸으로 두면 환경 변수 사용): ",
+        "Notion API Key를 입력하세요: ",
         default="",
-        show_default=False,  # Don't show empty default
+        show_default=False,
     )
     anthropic_api_key = typer.prompt(
-        "Anthropic API Key를 입력하세요 (빈칸으로 두면 환경 변수 사용): ",
+        "Anthropic API Key를 입력하세요: ",
         default="",
         show_default=False,
     )
     openai_api_key = typer.prompt(
-        "OpenAI API Key를 입력하세요 (빈칸으로 두면 환경 변수 사용): ",
+        "OpenAI API Key를 입력하세요: ",
         default="",
         show_default=False,
     )
     google_api_key = typer.prompt(
-        "Google API Key를 입력하세요 (빈칸으로 두면 환경 변수 사용): ",
+        "Google API Key를 입력하세요: ",
         default="",
         show_default=False,
     )
@@ -77,16 +77,11 @@ def config_init():
         "default_model": default_model,
         "alternative_model": alternative_model,
         "notion_database_id": notion_db_id,
+        "notion_api_key": notion_api_key,
+        "anthropic_api_key": anthropic_api_key,
+        "openai_api_key": openai_api_key,
+        "google_api_key": google_api_key,
     }
-
-    if notion_api_key:
-        config_data["notion_api_key"] = notion_api_key
-    if anthropic_api_key:
-        config_data["anthropic_api_key"] = anthropic_api_key
-    if openai_api_key:
-        config_data["openai_api_key"] = openai_api_key
-    if google_api_key:
-        config_data["google_api_key"] = google_api_key
 
     with open(CONFIG_FILE, "w") as f:
         f.write(json.dumps(config_data, indent=2))
@@ -142,9 +137,9 @@ def qna():
             break
 
         result = answer_question(model, question)
-        print("💡 정답:\n\n", result.answer)
-        print("🔍 설명:\n\n", result.explanation)
-        print("⚙️ 언급된 서비스:\n\n", list(result.used_services))
+        print("💡 정답:\n\n", result.answer, "\n\n")
+        print("🔍 설명:\n\n", result.explanation, "\n\n")
+        print("⚙️ 언급된 서비스:\n\n", list(result.used_services), "\n\n")
 
         try:
             response = _get_confirmation()
@@ -158,6 +153,7 @@ def qna():
             model = settings.alternative_model
             print(f"🔄 모델을 {model}로 변경 후 재시도합니다.")
             need_new_question = False
+            continue
         else:
             print("👋 프로그램을 종료합니다.")
             break
