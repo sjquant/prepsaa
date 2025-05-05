@@ -137,9 +137,9 @@ def qna():
             break
 
         result = answer_question(model, question)
-        print("💡 정답:\n\n", result.answer, "\n\n")
-        print("🔍 설명:\n\n", result.explanation, "\n\n")
-        print("⚙️ 언급된 서비스:\n\n", list(result.used_services), "\n\n")
+        print(f"💡 정답:\n\n{result.answer}\n\n")
+        print(f"🔍 설명:\n\n{result.explanation}\n\n")
+        print(f"⚙️ 언급된 서비스:\n\n{list(result.used_services)}\n\n")
 
         try:
             response = _get_confirmation()
