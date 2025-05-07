@@ -46,13 +46,13 @@ prepsaa config init
 설정된 내용은 `~/.config/prepsaa/config.json` 파일에 저장됩니다. 설정 파일의 위치는 다음 명령어로 확인할 수 있습니다.
 
 ```bash
-prepsaa config path
+uvx prepsaa config path
 ```
 
 설정 파일을 삭제하려면 다음 명령어를 사용합니다.
 
 ```bash
-prepsaa config clean
+uvx prepsaa config clean
 ```
 
 ## 💡 사용 방법
@@ -62,7 +62,7 @@ prepsaa config clean
 AWS SAA 관련 질문을 하고 LLM으로부터 답변, 설명, 관련 서비스 목록을 받습니다.
 
 ```bash
-prepsaa qna
+uvx prepsaa qna
 ```
 
 명령어를 실행하면 기본 편집기가 열립니다. 질문을 입력하고 저장하면 LLM이 답변을 생성합니다.
@@ -76,13 +76,13 @@ prepsaa qna
 원하는 AWS 서비스의 이름을 지정하여 학습 노트를 생성하고 Notion에 저장합니다.
 
 ```bash
-prepsaa explain <서비스 이름>
+uvx prepsaa explain "<서비스 이름>"
 ```
 
 예시:
 
 ```bash
-prepsaa explain "Amazon S3"
+uvx prepsaa explain "Amazon S3"
 ```
 
 ## 🙏 기여하기
@@ -91,4 +91,4 @@ prepsaa explain "Amazon S3"
 
 ## 📄 라이선스
 
-MIT License
+[MIT License](LICENSE)
